@@ -2,11 +2,24 @@
     <head>
         <link href="site.css" rel="stylesheet">
         <title>What Defines Art?</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <script src="./init_page.js"></script>
     </head>
     <body>
-        <div class="center">
-            <h1>What Defines Art?</h1>
-            <img class="art" src={#RandomImage#}></img>
+        <div class="media">
+            <div class="header">
+                <div class="titleText">
+                <div>What Defines</div> <div class="artTitleText">Art?</div>
+                </div>
+            </div>
+            <div class="images">
+                <div><img id="art" src={#RandomImage#}></img></div>
+            </div>
+            <div class="footer chooser"> 
+                <button class="btnYes bubble">Art</button>
+                <div>Is this art?</div>
+                <button class="btnNo">Fart</button>
+            </div>
         </div>
     </body>
 </html>

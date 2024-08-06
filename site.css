@@ -1,8 +1,152 @@
-.center {
-    text-align: center;
+body {
+  background-color: pink;
+  margin: 0px;
 }
 
-.art {
-    max-width: 1000px;
-    max-height: 800px;
+.chooser {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+
+/** Not mobile **/
+@media(min-aspect-ratio: 1.0001) {
+  .header {
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    font-size: 92px;
+    letter-spacing: -40px;
+    font-weight: bold;
+  }
+
+  .titleText {
+    position:absolute;
+    text-align: center;
+    height: 90%;
+    left: 60px;
+    margin-left: 20px;
+  }
+
+  .artTitleText {
+    background-image: repeating-linear-gradient(in oklab, rgb(119, 144, 255), rgb(119, 144, 255) 8px,transparent 5px, transparent  10px);
+    background-clip: text;
+    color: transparent;
+    text-shadow: none; /** We need to get rid of text shadow **/
+  }
+
+  .images {
+    margin-top: 60px;
+    margin-right: 60px;
+  }
+}
+
+/** Desktop Layout **/
+@media(max-aspect-ratio: 1.8) and (min-aspect-ratio: 1.0) {
+  .media {
+    display: grid;
+    grid-template-columns: 400px auto;
+    grid-template-rows: .7fr 1fr;
+    grid-template-areas:
+      "header images"
+      "header footer";
+    grid-gap: 20px;
+    height: 100%;  
+    justify-items: center;
+  }
+}
+
+/** Mobile layout **/
+@media(max-aspect-ratio: 1.0001) {
+  .media {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:1fr auto 1fr;
+    grid-template-areas:
+      "header"
+      "images"
+      "footer";
+    grid-gap: 20px;
+    height: 100%;
+  }
+
+  .titleText {
+    text-align: center;
+    font-size: 92px;
+  }
+
+  .images {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+/** Landscape Layout **/
+@media(min-aspect-ratio: 1.8) {
+  .media {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows:1fr;
+    grid-template-areas:
+      "header images footer";
+    grid-gap: 20px;
+    height: 100%;
+  }
+}
+
+.header {
+  grid-area: header;
+  color: lightblue;
+  text-shadow: black 1px 2px 2px;
+}
+
+.images {
+  grid-area: images;
+}
+
+.footer {
+  grid-area: footer;
+  text-align: center;
+}
+
+.btnYes {
+  background-image: url("Mona_Lisa_headcrop.jpg");
+  width: 100px;
+  height: 120px;
+  background-size: cover;
+  background-color: transparent;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+
+.btnNo {
+  background-image: url("toilet.png");
+  width: 100px;
+  height: 120px;
+  background-size: cover;
+  background-color: transparent;
+  color: black;
+  font-size: 32px;
+  padding-top: 80px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+
+.bubble {
+  box-sizing: content-box;
+  border: 10px solid transparent;
+  border-image-source: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="brown"><path d="M3 0h1v1a2 2 0 0 1 2 2h1v1H6a2 2 0 0 1-2 2v1H3V6a2 2 0 0 1-2-2H0V3h1c0-1.1.9-2 2-2V0Z" /></svg>');
+  border-image-slice: 3;
+}
+
+.bubble:active {
+  box-sizing: content-box;
+  border: 10px solid transparent;
+  border-image-source: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="blue"><path d="M3 0h1v1a2 2 0 0 1 2 2h1v1H6a2 2 0 0 1-2 2v1H3V6a2 2 0 0 1-2-2H0V3h1c0-1.1.9-2 2-2V0Z" /></svg>');
+  border-image-slice: 3;
 }
