@@ -3,7 +3,7 @@
         <link href="site.css" rel="stylesheet">
         <title>What Defines Art?</title>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <script src="./init_page.js"></script>
+        <script src="./page.js"></script>
     </head>
     <body>
         <div class="media">
@@ -16,9 +16,9 @@
                 <div><img id="art" src={#RandomImage#}></img></div>
             </div>
             <div class="footer chooser"> 
-                <button class="btnYes bubble">Art</button>
-                <div>Is this art?</div>
-                <button class="btnNo">Fart</button>
+                <button id="btnYes" value="yes" class="btnYes bubble">Art</button>
+                <p>Is this art?</p>
+                <button id="btnNo" value="no" class="btnNo">Fart</button>
             </div>
         </div>
     </body>
