@@ -7,9 +7,9 @@ import os
 import datetime
 
 # Debug
-app = FastAPI()
+# app = FastAPI()
 # Release
-# app = FastAPI(docs_url=None, redoc_url=None)
+app = FastAPI(docs_url=None, redoc_url=None)
 
 @app.get("/")
 async def root():
@@ -40,9 +40,9 @@ async def vote(choice: Choice, request: Request):
             # Check how many votes the picture has
             filename = list(os.listdir("./build/randomImage/"))[0]
             print(filename)
-            res = cur.execute("SELECT Yes_Votes, No_Votes FROM Pictures WHERE Filename=?", (filename,))
-            yes_votes,no_votes = res.fetchone()
-            
+            res = cur.execute("SELECT Yes_Votes, No_Votes FROM Pictures WHERE Filename=? AND Date_Displayed=?", (filename,current_date))
+            [yes_votes,no_votes] = res.fetchone()
+
             if hasUserVoted:
                 msg = str(yes_votes) + "," + str(no_votes)
                 return msg
