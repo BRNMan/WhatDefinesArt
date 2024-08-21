@@ -1,25 +1,36 @@
 <html>
-    <head>
-        <link href="site.css" rel="stylesheet">
-        <title>What Defines Art?</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <script src="./page.js"></script>
-    </head>
-    <body>
-        <div class="media">
-            <div class="header">
-                <div class="titleText">
-                <div>What Defines</div> <div class="artTitleText">Art?</div>
-                </div>
-            </div>
-            <div class="images">
-                <div><img id="art" src={#RandomImage#}></img></div>
-            </div>
-            <div class="footer chooser"> 
-                <button id="btnYes" value="yes" class="btnYes bubble">Art</button>
-                <p>Is this art?</p>
-                <button id="btnNo" value="no" class="btnNo">Fart</button>
+
+<head>
+    <link href="site.css" rel="stylesheet">
+    <title>What Defines Art?</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="./page.js"></script>
+</head>
+
+<body>
+    <div class="media">
+        <div class="header">
+            <div class="titleText">
+                <div>What Defines</div>
+                <div class="artTitleText">Art?</div>
             </div>
         </div>
-    </body>
+        <div class="images">
+            <div><img id="art" src={#RandomImage#}></img></div>
+        </div>
+        <div class="footer chooser">
+            <div>
+                <p>Art</p>
+                <button id="btnYes" value="yes" class="btnYes bubble"></button>
+            </div>
+
+            <p class="ArtQuestionText">Is this art?</p>
+            <div>
+                <p>Fart</p>
+                <button id="btnNo" value="no" class="btnNo"></button>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>

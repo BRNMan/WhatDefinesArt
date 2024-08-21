@@ -37,7 +37,8 @@ function sendVote(choice) {
             const noVotes = votesArray[1];
             const denominator = parseInt(yesVotes) + parseInt(noVotes);
             const votePercentage = yesVotes/denominator;
-            const voteContainer = document.body;
+            const voteContainer = document.createElement("div");
+            voteContainer.className = "VoteContainer";
 
             const yesDiv = document.createElement("div");
             yesDiv.className = "VoteShareYes";
@@ -48,6 +49,8 @@ function sendVote(choice) {
 
             voteContainer.appendChild(yesDiv);
             voteContainer.appendChild(noDiv);
+
+            document.body.appendChild(voteContainer);
 
             animateVoteBar(voteContainer, votePercentage);
         }
@@ -64,7 +67,7 @@ function animateVoteBar(container, stoppingPoint) {
     rightElement.style.width = 0;
     let rightAccel = 6;
     let rightVelocity = 0;
-
+    stoppingPoint = .5;//BLEH
     let delta;
 
     const zero = performance.now(); // The only timestamp
@@ -111,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     var art = document.querySelector("#art");
     function onImageLoaded()
     {
-        console.log("loadedART");
         var initialWindowWidth = window.innerWidth;
         var initialWindowHeight = window.innerHeight;
         if (art.naturalWidth > art.naturalHeight) {
@@ -120,12 +122,14 @@ document.addEventListener("DOMContentLoaded", () => {
             art.height = initialWindowHeight * .70;
         }
     };
-    
+
     if(art.complete) {
         onImageLoaded()
     } else {
         art.addEventListener("load", onImageLoaded);
     }
+    
+    screen.orientation.onchange = onImageLoaded();
 
     document.querySelector("#btnYes").addEventListener("click", () => sendVote("yes"));
     document.querySelector("#btnNo").addEventListener("click", () => sendVote("no"));

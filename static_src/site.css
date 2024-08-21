@@ -11,18 +11,13 @@ body {
   gap: 20px;
 }
 
-.chooser > p {
-  font-size: 32px;
-}
-
-
 /** Not mobile **/
 @media(min-aspect-ratio: 1.0001) {
   .header {
     text-orientation: upright;
     writing-mode: vertical-lr;
-    font-size: 92px;
-    letter-spacing: -40px;
+    font-size: 3vw;
+    letter-spacing: -.4em;
     font-weight: bold;
   }
 
@@ -117,43 +112,36 @@ body {
 
 .btnYes {
   background-image: url("Mona_Lisa_headcrop.jpg");
-  width: 120px;
-  height: 145px;
+  width: 9vh;
+  height: 11vh;
   background-size: cover;
   background-color: transparent;
   color: white;
-  font-size: 32px;
+  font-size: 2vh;
   cursor: pointer;
   background-repeat: no-repeat;
-  padding-top: 100px;
 }
 
 .btnNo {
   background-image: url("toilet.png");
-  width: 100px;
-  height: 120px;
+  width: 9vh;
+  height: 11vh;
   background-size: cover;
   background-color: pink;
   color: black;
-  font-size: 32px;
-  padding-top: 80px;
+  font-size: 2vh;
   cursor: pointer;
   background-repeat: no-repeat;
 }
 
-.bubble {
-  border: 10px solid transparent;
-  border-image-source: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="brown"><path d="M3 0h1v1a2 2 0 0 1 2 2h1v1H6a2 2 0 0 1-2 2v1H3V6a2 2 0 0 1-2-2H0V3h1c0-1.1.9-2 2-2V0Z" /></svg>');
-  border-image-slice: 3;
+.footer > div > p {
+  font-size: 2vh;
+  margin: 0px;
 }
 
-.bubble:active {
-  border: 10px solid transparent;
-  border-image-source: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="lightgreen"><path d="M3 0h1v1a2 2 0 0 1 2 2h1v1H6a2 2 0 0 1-2 2v1H3V6a2 2 0 0 1-2-2H0V3h1c0-1.1.9-2 2-2V0Z" /></svg>');
-  border-image-slice: 3;
+.ArtQuestionText {
+  font-size: 3vh;
 }
-
-
 
 .plusOne, .minusOne {
   position: relative;
@@ -186,26 +174,33 @@ body {
 
 .VoteShareYes {
   background-color: #c1ff9b;
-  height: 150px;
-  position: fixed;
-  bottom: 0%;
+  height: 10vh;
+  position: relative;
+  bottom: 0px;
   left: 0%;
   z-index: -1;
-  text-align: center;
+  text-align: start;
   align-content: center;
-  font-size: 24px;
+  font-size: 2vh;
   overflow: hidden;
+  padding-left: 2vw;
 }
 
 .VoteShareNo {
   background-color: #E63946;
-  height: 150px;
-  position: fixed;
+  height: 10vh;
+  position: absolute;
   right: 0%;
-  bottom: 0%;
+  bottom: 0px;
   z-index: -1;
-  text-align: center;
+  text-align: end;
   align-content: center;
-  font-size: 24px;
+  font-size: 2vh;
   overflow: hidden;
+  padding-right: 2vw;
+}
+
+.VoteContainer {
+  position: relative;
+  bottom: 0px;
 }
