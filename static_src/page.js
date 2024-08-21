@@ -110,18 +110,19 @@ function animateVoteBar(container, stoppingPoint) {
     }
 }
 
+function onImageLoaded()
+{
+    var initialWindowWidth = window.innerWidth;
+    var initialWindowHeight = window.innerHeight;
+    if (art.naturalWidth > art.naturalHeight) {
+        art.width = initialWindowWidth * .70;
+    } else {
+        art.height = initialWindowHeight * .70;
+    }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     var art = document.querySelector("#art");
-    function onImageLoaded()
-    {
-        var initialWindowWidth = window.innerWidth;
-        var initialWindowHeight = window.innerHeight;
-        if (art.naturalWidth > art.naturalHeight) {
-            art.width = initialWindowWidth * .70;
-        } else {
-            art.height = initialWindowHeight * .70;
-        }
-    };
 
     if(art.complete) {
         onImageLoaded()
@@ -129,8 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         art.addEventListener("load", onImageLoaded);
     }
     
-    screen.orientation.onchange = onImageLoaded();
-
+    screen.orientation.onchange = onImageLoaded;
     document.querySelector("#btnYes").addEventListener("click", () => sendVote("yes"));
     document.querySelector("#btnNo").addEventListener("click", () => sendVote("no"));
 });

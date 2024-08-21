@@ -140,7 +140,8 @@ body {
 }
 
 .ArtQuestionText {
-  font-size: 3vh;
+  font-size: 2vh;
+  font-weight: bold;
 }
 
 .plusOne, .minusOne {
