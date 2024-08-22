@@ -184,7 +184,10 @@ body {
   align-content: center;
   font-size: 2vh;
   overflow: hidden;
-  padding-left: 2vw;
+}
+
+.VoteShareYes > p {
+  padding-left: 2em;
 }
 
 .VoteShareNo {
@@ -198,10 +201,14 @@ body {
   align-content: center;
   font-size: 2vh;
   overflow: hidden;
-  padding-right: 2vw;
+}
+
+.VoteShareNo > p {
+  padding-right: 2em;
 }
 
 .VoteContainer {
-  position: relative;
+  position: absolute;
   bottom: 0px;
+  width: 100%;
 }

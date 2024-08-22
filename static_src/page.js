@@ -42,10 +42,14 @@ function sendVote(choice) {
 
             const yesDiv = document.createElement("div");
             yesDiv.className = "VoteShareYes";
-            yesDiv.textContent = votePercentage*100 + "% Art";
+            const p = document.createElement("p");
+            p.textContent = votePercentage*100 + "% Art";
+            yesDiv.appendChild(p)
             const noDiv = document.createElement("div");
             noDiv.className = "VoteShareNo";
-            noDiv.textContent = (1-votePercentage)*100 + "% Fart";
+            const p2 = document.createElement("p");
+            p2.textContent = (1-votePercentage)*100 + "% Fart";
+            noDiv.appendChild(p2)
 
             voteContainer.appendChild(yesDiv);
             voteContainer.appendChild(noDiv);
@@ -67,7 +71,7 @@ function animateVoteBar(container, stoppingPoint) {
     rightElement.style.width = 0;
     let rightAccel = 6;
     let rightVelocity = 0;
-    stoppingPoint = .5;//BLEH
+
     let delta;
 
     const zero = performance.now(); // The only timestamp
