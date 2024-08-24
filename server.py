@@ -1,6 +1,7 @@
 from fastapi import FastAPI,HTTPException,Request
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 from pydantic import BaseModel
 import sqlite3
 import os
@@ -10,6 +11,8 @@ import datetime
 # app = FastAPI()
 # Release
 app = FastAPI(docs_url=None, redoc_url=None)
+
+app.add_middleware(HTTPSRedirectMiddleware)
 
 @app.get("/")
 async def root():
