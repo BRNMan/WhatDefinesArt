@@ -16,6 +16,10 @@ dirBuildBase = "./build/"
 staticSrcBase = "./static_src/"
 imagesBase = "./images/"
 # Set up build directory
+
+# First make sure we're in the directory this file is in.
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+ 
 if(os.path.isdir(dirBuildBase)):
     shutil.rmtree(dirBuildBase)
 os.mkdir(dirBuildBase)
