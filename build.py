@@ -5,6 +5,9 @@ import shutil
 import sqlite3
 import datetime
 import hashlib
+import logging
+
+logging.info("Rebuilding What Defines Art")
 
 def chooseNewPicture():
     return True
@@ -43,26 +46,30 @@ f.write(fileText)
 f.close()
 
 with sqlite3.connect("site_data.db") as con:
-    cur = con.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS"Pictures" (
-	"Filename"	TEXT,
-	"Date_Displayed"	TEXT,
-	"Yes_Votes"	INTEGER DEFAULT 0,
-	"No_Votes"	INTEGER DEFAULT 0,
-	"Picture_Hash"	TEXT,
-	PRIMARY KEY("Filename","Date_Displayed")
-    );""")
-    cur.execute("""CREATE TABLE IF NOT EXISTS "Votes" (
-	"UserID"	TEXT,
-	"Choice"	TEXT,
-	"Time"	TEXT,
-    "Date_Displayed_FK"	TEXT,
-    "Filename_FK"	TEXT,
-	FOREIGN KEY("Date_Displayed_FK") REFERENCES "Pictures"("Date_Displayed"),
-	FOREIGN KEY("Filename_FK") REFERENCES "Pictures"("Filename")
-    )""")
-    cur.execute("""INSERT OR IGNORE INTO "Pictures" (Filename,Date_Displayed,Yes_Votes,No_Votes,Picture_Hash)
-    VALUES(?,?,0,0,?)""",
-    (curImage, datetime.date.today().strftime('%Y-%m-%d'), curImageMD5))
-    con.commit()
+    try:
+        cur = con.cursor()
+        cur.execute("""CREATE TABLE IF NOT EXISTS"Pictures" (
+        "Filename"	TEXT,
+        "Date_Displayed"	TEXT,
+        "Yes_Votes"	INTEGER DEFAULT 0,
+        "No_Votes"	INTEGER DEFAULT 0,
+        "Picture_Hash"	TEXT,
+        PRIMARY KEY("Filename","Date_Displayed")
+        );""")
+        cur.execute("""CREATE TABLE IF NOT EXISTS "Votes" (
+        "UserID"	TEXT,
+        "Choice"	TEXT,
+        "Time"	TEXT,
+        "Date_Displayed_FK"	TEXT,
+        "Filename_FK"	TEXT,
+        FOREIGN KEY("Date_Displayed_FK") REFERENCES "Pictures"("Date_Displayed"),
+        FOREIGN KEY("Filename_FK") REFERENCES "Pictures"("Filename")
+        )""")
+        cur.execute("""INSERT OR IGNORE INTO "Pictures" (Filename,Date_Displayed,Yes_Votes,No_Votes,Picture_Hash)
+        VALUES(?,?,0,0,?)""",
+        (curImage, datetime.date.today().strftime('%Y-%m-%d'), curImageMD5))
+        con.commit()
+    except Exception as E:
+        logging.exception("There was a SQL error.")
+        con.rollback()
 
