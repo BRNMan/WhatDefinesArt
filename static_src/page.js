@@ -54,9 +54,15 @@ function sendVote(choice) {
             voteContainer.appendChild(yesDiv);
             voteContainer.appendChild(noDiv);
 
-            document.body.appendChild(voteContainer);
-
+            if (window.matchMedia("(max-aspect-ratio: 1.0001)").matches) {
+                document.querySelector(".media").appendChild(voteContainer);
+            }
+            else {
+                document.body.appendChild(voteContainer);
+            }
             animateVoteBar(voteContainer, votePercentage);
+
+            voteContainer.scrollIntoView(false);
         }
     }
 }
@@ -105,7 +111,7 @@ function animateVoteBar(container, stoppingPoint) {
                 rightVelocity *= -.5;
                 // TODO: Create particles at stop point
             }
-
+            leftElement.scrollIntoView(false);
             requestAnimationFrame(animate);
         } else {
             leftElement.style.width = stoppingPoint * 100 + "%";
