@@ -60,6 +60,11 @@ body {
     justify-items: center;
     height: 100%;
   }
+
+  /** Lazy fix to misaligned footer **/
+  .footer {
+    margin-right: 10vh;
+  }
 }
 
 /** Mobile layout **/

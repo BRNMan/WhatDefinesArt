@@ -6,6 +6,7 @@ import sqlite3
 import datetime
 import hashlib
 import logging
+import drivePictures
 
 logging.info("Rebuilding What Defines Art")
 
@@ -15,15 +16,16 @@ def chooseNewPicture():
 dirBuildBase = "./build/"
 staticSrcBase = "./static_src/"
 imagesBase = "./images/"
-# Set up build directory
 
 # First make sure we're in the directory this file is in.
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
  
+# Next set up the build directory
 if(os.path.isdir(dirBuildBase)):
     shutil.rmtree(dirBuildBase)
 os.mkdir(dirBuildBase)
-os.mkdir(dirBuildBase + "randomImage/")
+randomImageBase = dirBuildBase + "randomImage/"
+os.mkdir(randomImageBase)
 
 # Copy files in static_src directory to build directory
 otherFiles = list(os.listdir(staticSrcBase))
@@ -34,16 +36,14 @@ for file in otherFiles:
 myFile =  open(staticSrcBase + "index.htm","r")
 fileText = myFile.read()
 myFile.close()
-imageDirFiles = os.listdir(imagesBase)
-imageFiles = list(filter(lambda img: img.endswith(".jpg"), imageDirFiles))
 
-random.seed(date.today().isoformat())
-curImage = random.choice(imageFiles)
-curImageMD5 = hashlib.md5(open(imagesBase + curImage,'rb').read()).hexdigest()
+# Get our image from drive
+curImageFileName = drivePictures.download_random_image(randomImageBase)
 
-shutil.copyfile(imagesBase + curImage, dirBuildBase + "randomImage/" + curImage)
+curImageMD5 = hashlib.md5(open(randomImageBase + curImageFileName,'rb').read()).hexdigest()
 
-fileText = fileText.replace("{#RandomImage#}", "randomImage/" + curImage)
+# In the html we work in the context of the build directory so no /build prefix necessary
+fileText = fileText.replace("{#RandomImage#}", "randomImage/" + curImageFileName)
 
 f = open(dirBuildBase + "index.html", "w")
 f.write(fileText)
@@ -71,7 +71,7 @@ with sqlite3.connect("site_data.db") as con:
         )""")
         cur.execute("""INSERT OR IGNORE INTO "Pictures" (Filename,Date_Displayed,Yes_Votes,No_Votes,Picture_Hash)
         VALUES(?,?,0,0,?)""",
-        (curImage, datetime.date.today().strftime('%Y-%m-%d'), curImageMD5))
+        (curImageFileName, datetime.date.today().strftime('%Y-%m-%d'), curImageMD5))
         con.commit()
     except Exception as E:
         logging.exception("There was a SQL error.")
