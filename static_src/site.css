@@ -211,7 +211,7 @@ body {
 .VoteShareNo {
   background-color: #E63946;
   height: 10vh;
-  position: absolute;
+  position: relative;
   right: 0%;
   bottom: 0px;
   z-index: -1;
