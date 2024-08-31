@@ -48,7 +48,7 @@ function sendVote(choice) {
             const noDiv = document.createElement("div");
             noDiv.className = "VoteShareNo";
             const p2 = document.createElement("p");
-            p2.textContent = (1 - votePercentage) * 100 + "% Fart";
+            p2.textContent = (1 - votePercentage) * 100 + "% Nart";
             noDiv.appendChild(p2)
 
             voteContainer.appendChild(yesDiv);

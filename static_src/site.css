@@ -43,7 +43,6 @@ body {
   .VoteContainer {
     width: 100%;
     position: absolute;
-    display: flex;
     bottom: 0px;
   }
 }
@@ -95,7 +94,6 @@ body {
   .VoteContainer {
     width: 100vw;
     position: relative;
-    display: flex;
   }
 }
 
@@ -192,6 +190,11 @@ body {
 @keyframes translateUp {
   from { opacity: 1; }
   to { transform: translatey(-400px) translatex(100px); opacity: 0;}
+}
+
+.VoteContainer {
+  display: flex;
+  justify-content: space-between;
 }
 
 .VoteShareYes {
