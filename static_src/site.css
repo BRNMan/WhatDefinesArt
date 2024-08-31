@@ -43,6 +43,7 @@ body {
   .VoteContainer {
     width: 100%;
     position: absolute;
+    display: flex;
     bottom: 0px;
   }
 }
@@ -93,6 +94,8 @@ body {
 
   .VoteContainer {
     width: 100vw;
+    position: relative;
+    display: flex;
   }
 }
 
@@ -194,7 +197,6 @@ body {
 .VoteShareYes {
   background-color: #c1ff9b;
   height: 10vh;
-  position: relative;
   bottom: 0px;
   left: 0%;
   z-index: -1;
@@ -211,7 +213,6 @@ body {
 .VoteShareNo {
   background-color: #E63946;
   height: 10vh;
-  position: relative;
   right: 0%;
   bottom: 0px;
   z-index: -1;
