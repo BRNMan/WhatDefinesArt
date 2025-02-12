@@ -111,7 +111,8 @@ function animateVoteBar(container, stoppingPoint) {
                 rightVelocity *= -.5;
                 // TODO: Create particles at stop point
             }
-            leftElement.scrollIntoView(false);
+            // I don't know why I did this but it breaks safari IOS
+            //leftElement.scrollIntoView(false);
             requestAnimationFrame(animate);
         } else {
             leftElement.style.width = stoppingPoint * 100 + "%";
