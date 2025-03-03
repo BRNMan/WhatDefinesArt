@@ -90,7 +90,7 @@ function animateVoteBar(container, stoppingPoint) {
         delta = currentTime - lastTime;
         lastTime = currentTime;
 
-        if (currentTime < 3000) {
+        if (currentTime < 2700) {
             leftVelocity += leftAccel * delta / 16;
             leftElement.style.width = (leftElement.clientWidth + leftVelocity) + "px";
             let leftCurrentWidth = leftElement.clientWidth;
@@ -111,8 +111,10 @@ function animateVoteBar(container, stoppingPoint) {
                 rightVelocity *= -.5;
                 // TODO: Create particles at stop point
             }
-            // I don't know why I did this but it breaks safari IOS
-            //leftElement.scrollIntoView(false);
+            // Scrollintoview is broken on safari on IOS
+            setTimeout(() => {
+                leftElement.scrollIntoView(false);
+            }, 10);
             requestAnimationFrame(animate);
         } else {
             leftElement.style.width = stoppingPoint * 100 + "%";
